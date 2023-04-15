@@ -1,10 +1,17 @@
 import clsx from 'clsx';
 import { FC, useRef, useState } from 'react';
-import { Button, RadioGroup, LabelInput, TextInput } from '@/components';
+import {
+  Button,
+  RadioGroup,
+  Label,
+  LabelInput,
+  Switch,
+  TextInput,
+} from '@/components';
 import {
   cardsNumberOptions,
-  useMemoryGameContext,
   pokemonRegions,
+  useMemoryGameContext,
 } from '@/context/MemoryGameContext';
 import { PokemonRegion } from '@/interfaces';
 import ConfirmDialog from './ConfirmDialog';
@@ -24,10 +31,11 @@ const SettingsCard: FC<SettingsCardProps> = ({ closeModal }) => {
   const [selectedRegion, setSelectedRegion] = useState<PokemonRegion>(
     settings.region
   );
-  const [maxCards, setMaxCards] = useState(settings.maxCards);
-  const mistakesLimit = useRef<HTMLInputElement>(null);
   const timeLimit = useRef<HTMLInputElement>(null);
+  const mistakesLimit = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<ErrorFields>({});
+  const [maxCards, setMaxCards] = useState(settings.maxCards);
+  const [shinyImages, setShinyImages] = useState<boolean>(settings.shinyImages);
 
   const onRegionChange = (value: string) => {
     if (value !== selectedRegion.name) {
@@ -68,6 +76,7 @@ const SettingsCard: FC<SettingsCardProps> = ({ closeModal }) => {
     setErrors(errors);
     if (!errors.mistakesLimit && !errors.timeLimit) setIsConfirming(true);
   };
+  const toggleShinyImages = () => setShinyImages(!shinyImages);
 
   const onCancel = () => setIsConfirming(false);
 
@@ -77,17 +86,15 @@ const SettingsCard: FC<SettingsCardProps> = ({ closeModal }) => {
       timeLimit: timeLimit.current?.valueAsNumber ?? 30,
       region: selectedRegion,
       maxCards,
+      shinyImages,
     });
     setIsConfirming(false);
     closeModal();
   };
 
   return (
-    <div className="h-fit p-4 rounded-xl bg-gray mobile:w-96 flex flex-col text-neutral-200 space-y-4 relative">
+    <div className="h-fit p-8 rounded-xl bg-gray mobile:w-[440px] w-full flex flex-col text-neutral-200 space-y-2 relative">
       <h1 className="text-2xl font-semibold text-center">Settings</h1>
-      {/* <span className="text-base text-theme-primary px-2">
-        *Warning - If you change the settings, the game will restart
-      </span> */}
       <form
         className={clsx(
           'w-full h-fit flex flex-col space-y-4',
@@ -118,6 +125,11 @@ const SettingsCard: FC<SettingsCardProps> = ({ closeModal }) => {
           text="Time limit (seconds)"
           errorMessage={errors.timeLimit}
           input={<TextInput type="number" placeholder="0" ref={timeLimit} />}
+        />
+        <Switch
+          checked={shinyImages}
+          label="Shiny images"
+          onToggle={toggleShinyImages}
         />
         <div className="flex items-center justify-center space-x-2">
           <Button type="submit" variant="primary" className="w-full">

@@ -12,7 +12,7 @@ const ConfirmDialog: FC<ConfirmDialogProps> = ({
   onCancel,
   warningText,
 }) => (
-  <div className="flex flex-col space-y-4 text-center w-full h-fit p-4 absolute bg-contrast-dark border border-solid border-gray rounded-md mobile:w-96 shadow-sm inset-0 -top-4 animate-fade-in shadow-neutral-700">
+  <div className="flex flex-col space-y-4 text-center w-full h-fit p-4 absolute bg-contrast-dark border border-solid border-gray rounded-md shadow-sm inset-0 -top-4 animate-fade-in shadow-neutral-700">
     <span className="font-semibold ml-2 text-base text-theme-secondary">
       {`* ${warningText}`}
     </span>

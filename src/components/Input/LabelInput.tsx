@@ -1,4 +1,5 @@
 import { FC, HTMLProps, ReactNode } from 'react';
+import Label from './Label';
 
 interface LabelProps extends HTMLProps<HTMLLabelElement> {
   text: string;
@@ -14,17 +15,8 @@ const LabelInput: FC<LabelProps> = ({
 }) => {
   return (
     <div className="flex flex-col space-y-2">
-      <label
-        className="font-semibold text-neutral-200 ml-2 text-base"
-        {...props}
-      >
-        {text}
-      </label>
-      {errorMessage && (
-        <label className="font-semibold ml-2 text-base text-theme-secondary">
-          {`* ${errorMessage}`}
-        </label>
-      )}
+      <Label {...props}>{text}</Label>
+      {errorMessage && <Label error> {`* ${errorMessage}`}</Label>}
       {input}
     </div>
   );

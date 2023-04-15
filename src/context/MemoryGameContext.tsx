@@ -1,4 +1,4 @@
-import { Context, useContext, createContext, Dispatch } from 'react';
+import { createContext, Dispatch, useContext } from 'react';
 import { PokemonRegion } from '@/interfaces';
 
 export interface MemoryGameSettings {
@@ -6,6 +6,7 @@ export interface MemoryGameSettings {
   maxCards: number;
   maxMistakes: number;
   timeLimit: number;
+  shinyImages: boolean;
 }
 
 export interface MemoryGameContextValues {
@@ -27,6 +28,7 @@ export const defaultSettings: MemoryGameSettings = {
   region: pokemonRegions[0],
   maxMistakes: 50,
   timeLimit: 0,
+  shinyImages: false,
 };
 
 const defaultState: MemoryGameContextValues = {

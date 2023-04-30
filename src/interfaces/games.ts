@@ -17,3 +17,8 @@ export interface PokemonRegion {
   end: number;
   name: string;
 }
+
+export interface PokemonInfo {
+  pokemonId: number;
+  url: Blob;
+}

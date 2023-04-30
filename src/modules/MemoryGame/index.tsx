@@ -1,21 +1,24 @@
 import { FC, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import {
   MemoryGameContext,
   defaultSettings,
   MemoryGameSettings,
+  MEMORY_GAME_COOKIE_KEY,
 } from '@/context/MemoryGameContext';
-import UserBoard from './UserBoard';
+import { Game } from './Game';
 
 interface MemoryGameProps {}
 
 const MemoryGame: FC<MemoryGameProps> = () => {
-  const [settings, setSettings] = useState<MemoryGameSettings>(defaultSettings);
+  const [cookie] = useCookies([MEMORY_GAME_COOKIE_KEY]);
+  const [settings, setSettings] = useState<MemoryGameSettings>(
+    cookie[MEMORY_GAME_COOKIE_KEY] ?? defaultSettings
+  );
 
   return (
     <MemoryGameContext.Provider value={{ settings, setSettings }}>
-      <div className="w-full h-auto flex flex-col space-y-2">
-        <UserBoard score={0} />
-      </div>
+      <Game />
     </MemoryGameContext.Provider>
   );
 };

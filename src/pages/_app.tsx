@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import { CookiesProvider } from 'react-cookie';
 import {
   Hydrate,
   QueryClient,
@@ -14,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <CookiesProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </CookiesProvider>
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

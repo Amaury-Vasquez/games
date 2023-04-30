@@ -9,16 +9,16 @@ const defaultOptions: RequestOptions = {
     'Content-Type': 'application/json',
   },
   cache: 'default',
-  refferrerPolicy: 'no-referrer',
+  referrerPolicy: 'no-referrer',
 };
 
 export async function fetchUrl(
   url: string,
-  options: RequestOptions = defaultOptions
+  options: RequestOptions = { ...defaultOptions }
 ) {
   const response = await fetch(url, options);
   const data = await response.json();
   return data;
 }
 
-export { queryGames } from './games';
+export { queryGames, queryMemoryGame } from './games';

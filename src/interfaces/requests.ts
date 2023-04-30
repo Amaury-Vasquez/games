@@ -11,7 +11,7 @@ type RequestCredentials = 'omit' | 'same-origin' | 'include';
 type RequestRedirect = 'follow' | 'error' | 'manual';
 type ReferrerPolicy =
   | 'no-referrer'
-  | '*no-referrer-when-downgrade'
+  | 'no-referrer-when-downgrade'
   | 'origin'
   | 'origin-when-cross-origin'
   | 'same-origin'
@@ -26,5 +26,5 @@ export interface RequestOptions {
   headers: HeadersInit;
   body?: BodyInit | null;
   cache: RequestCache;
-  refferrerPolicy: ReferrerPolicy;
+  referrerPolicy: ReferrerPolicy;
 }

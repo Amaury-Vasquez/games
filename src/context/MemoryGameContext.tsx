@@ -1,5 +1,6 @@
-import { createContext, Dispatch, useContext } from 'react';
+import { createContext, Dispatch, useContext, useEffect } from 'react';
 import { PokemonRegion } from '@/interfaces';
+import { useCookies } from 'react-cookie';
 
 export interface MemoryGameSettings {
   region: PokemonRegion;
@@ -14,7 +15,7 @@ export interface MemoryGameContextValues {
   setSettings: Dispatch<MemoryGameSettings>;
 }
 
-export const cardsNumberOptions: number[] = [10, 15, 20];
+export const cardsNumberOptions: number[] = [10, 16, 20];
 
 export const pokemonRegions: PokemonRegion[] = [
   { start: 1, end: 151, name: 'kanto' },
@@ -39,4 +40,10 @@ const defaultState: MemoryGameContextValues = {
 export const MemoryGameContext =
   createContext<MemoryGameContextValues>(defaultState);
 
-export const useMemoryGameContext = () => useContext(MemoryGameContext);
+export const MEMORY_GAME_COOKIE_KEY = 'memory-game-settings';
+
+export const useMemoryGameContext = () => {
+  const { settings, setSettings } = useContext(MemoryGameContext);
+
+  return { settings, setSettings };
+};

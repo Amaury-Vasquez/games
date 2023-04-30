@@ -9,11 +9,11 @@ interface UserBoardProps {
 }
 
 const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
-const SettingsCard = dynamic(() => import('@/components/SettingsCard'), {
+const SettingsCard = dynamic(() => import('../SettingsCard'), {
   loading: () => <BounceLoader size="lg" />,
 });
 
-const UserBoard: FC<UserBoardProps> = ({ score }) => {
+export const UserBoard: FC<UserBoardProps> = ({ score }) => {
   const { isActive, toggle, willClose } = useToggle(false);
 
   return (
@@ -36,5 +36,3 @@ const UserBoard: FC<UserBoardProps> = ({ score }) => {
     </>
   );
 };
-
-export default UserBoard;

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { FaGamepad } from 'react-icons/fa';
@@ -20,10 +21,17 @@ const Header: FC = () => {
       text: 'About',
     },
   ];
+
+  const outlined =
+    'p-2 outline-none focus-visible:rounded-md focus-visible:border focus-visible:border-solid focus-visible:border-theme-primary';
+
   return (
     <header className="w-full 2xl:w-10/12 xl:m-auto max-md:flex-col max-md:space-y-3 flex items-center py-2 px-4 max-sm:px-2 h-24 justify-between">
       <Link
-        className="flex items-center space-x-4 text-light hover:text-theme-secondary transition-colors"
+        className={clsx(
+          'flex items-center space-x-4 text-light hover:text-theme-secondary transition-colors',
+          outlined
+        )}
         href="/"
       >
         <FaGamepad className="text-5xl  text-orange-500" />

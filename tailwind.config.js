@@ -9,6 +9,7 @@ module.exports = {
         'primary-dark': '#171717',
         'theme-primary': '#fb923c',
         'theme-secondary': '#f97316',
+        'theme-dark': '#000005',
         gray: '#2a2b38',
         'contrast-light': '#334155',
         'contrast-dark': '#1f2029',
@@ -20,6 +21,10 @@ module.exports = {
         tablet: '900px',
         tabletXL: '1024px',
         laptop: '1400px',
+      },
+      boxShadow: {
+        dark: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
+        'dark-sm': 'rgba(100, 100, 111, 0.2) 0px 1px 4px 0px;',
       },
       keyframes: {
         skeleton: {

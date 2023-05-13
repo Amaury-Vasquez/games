@@ -1,35 +1,38 @@
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useMemoryGameContext } from '@/context/MemoryGameContext';
+import { BounceLoader } from '@/components';
 import { useMemoryGame } from '@/hooks/useMemoryGame';
-import { queryMemoryGame } from '@/queries';
 import { GameCard } from './GameCard';
 import { UserBoard } from './UserBoard';
 
 export const Game: FC = () => {
-  const { pokemons, isLoading } = useMemoryGame();
+  const { pokemons, isLoading, handleCardClick, disableCards } =
+    useMemoryGame();
 
   return (
     <div className="w-full h-auto flex flex-col space-y-2">
       <UserBoard score={0} />
       <div
         className={clsx(
-          'w-full h-fit p-4 grid place-items-center gap-4 animate-fade-in',
-          'grid-cols-4 md:grid-cols-6 lg:grid-cols-8'
+          'w-full p-4 animate-fade-in',
+          isLoading
+            ? 'flex h-96 items-center justify-center'
+            : 'h-fit grid-cols-4 grid place-items-center gap-4 md:grid-cols-6 lg:grid-cols-8'
         )}
       >
         {isLoading ? (
-          <div></div>
+          <BounceLoader size="lg" />
         ) : (
-          pokemons?.map(({ pokemonId, url }, index) => (
+          pokemons?.map(({ pokemonId, image, isFlipped, isMatched }, index) => (
             <GameCard
               key={`pokecard:${pokemonId}:[${index}]`}
               id={pokemonId}
-              image={url.toString()}
-              isFlipped
-              isMatched
-              onClick={() => {}}
+              image={image}
+              isFlipped={isFlipped}
+              isMatched={isMatched}
+              onClick={handleCardClick}
+              index={index}
+              disabled={disableCards}
             />
           ))
         )}

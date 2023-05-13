@@ -14,7 +14,7 @@ const Modal: FC<ModalProps> = ({ children, closeModal, willClose }) => {
   return (
     <div
       className={clsx(
-        'absolute w-screen animate-fade-in h-screen z-0 bg-transparent-black flex justify-center items-center inset-0 m-0',
+        'absolute w-screen animate-fade-in h-screen z-50 bg-transparent-black flex justify-center items-center inset-0 m-0',
         willClose && 'animate-fade-out'
       )}
     >

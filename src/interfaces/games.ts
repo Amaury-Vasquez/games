@@ -22,3 +22,11 @@ export interface PokemonInfo {
   pokemonId: number;
   url: Blob;
 }
+
+export interface PokemonCardInfo {
+  pokemonId: number;
+  image: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+  index: number;
+}

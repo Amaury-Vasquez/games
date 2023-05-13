@@ -1,3 +1,11 @@
 .gradientBackground {
   background: radial-gradient(circle at 24.1% 68.8%, #2a2b38 0%, #131b31 99.4%);
 }
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+.flipDown {
+  transform: rotateX(-180deg);
+}

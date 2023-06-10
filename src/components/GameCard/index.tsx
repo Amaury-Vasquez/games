@@ -22,7 +22,11 @@ const GameCard: FC<GameCardProps> = ({
       <article className="text-light flex flex-col space-y-4 text-left py-2 px-0 justify-around items-center">
         <h1 className="text-2xl font-semibold capitalize">{name}</h1>
         <p className="text-xl">{description}</p>
-        <Anchor href={`/games/${path}`} className="px-12" variant="primary">
+        <Anchor
+          href={`/games/${path}`}
+          className="px-12 font-bold"
+          variant="primary"
+        >
           Play
         </Anchor>
       </article>

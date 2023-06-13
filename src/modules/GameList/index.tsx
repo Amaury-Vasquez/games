@@ -5,7 +5,7 @@ import { gamesList } from '@/data';
 import { GameInfo } from '@/interfaces';
 
 const GameList: FC = () => (
-  <div className="w-full min-h-full h-fit py-8 px-4 max-mobileXS:px-1">
+  <main className="w-full min-h-full h-fit py-8 px-4 max-mobileXS:px-1">
     <article className="text-light mb-4">
       <h1 className="text-center text-2xl font-semibold">
         Enjoy all free games available
@@ -24,7 +24,7 @@ const GameList: FC = () => (
         <GameCard {...game} key={`${game.name}${i}-game-card`} />
       ))}
     </div>
-  </div>
+  </main>
 );
 
 export default GameList;

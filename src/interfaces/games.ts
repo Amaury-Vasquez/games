@@ -27,6 +27,7 @@ export interface PokemonCardInfo {
   pokemonId: number;
   image: string;
   isFlipped: boolean;
+  isFlipping: boolean;
   isMatched: boolean;
   index: number;
 }

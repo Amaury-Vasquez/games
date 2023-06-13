@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useToggle } from '@/hooks';
 import styles from '@/styles/utilities.module.css';
 import { TbPokeball } from 'react-icons/tb';
 
@@ -8,6 +7,7 @@ interface GameCardProps {
   id: number;
   image: string;
   isFlipped: boolean;
+  isFlipping: boolean;
   isMatched: boolean;
   onClick: (id: number, index: number) => void;
   index: number;
@@ -16,39 +16,32 @@ interface GameCardProps {
 
 const { flip, flipDown, gradientBackground } = styles;
 
-export const GameCard: FC<GameCardProps> = ({
+export const PokeCard: FC<GameCardProps> = ({
   id,
   image,
   isFlipped,
   isMatched,
   onClick,
+  isFlipping,
   index,
   disabled,
 }) => {
-  const time = 250;
-  const { willClose, toggle } = useToggle(true, time);
-
-  const handleClick = (id: number) => {
-    toggle();
-    setTimeout(() => {
-      onClick(id, index);
-    }, time);
+  const handleClick = () => {
+    if (!disabled && !isMatched && !isFlipped) onClick(id, index);
   };
 
   return (
     <button
       className={clsx(
-        'w-full aspect-square rounded-md p-4 flex items-center justify-center outline-none border-none transition-all duration-300 animate-fade-in',
-        'transform hover:opacity-90 hover:shadow-dark hover:scale-110',
+        'w-full aspect-square rounded-md p-4 flex items-center justify-center outline-none border-none transition-all duration-500 animate-fade-in',
+        'hover:transform hover:opacity-90 hover:shadow-dark hover:scale-110',
         'focus-visible:border focus-visible:border-theme-primary focus-visible:border-solid focus-visible:shadow-dark',
-        willClose && (isFlipped ? flip : flipDown),
+        isFlipping && flip,
         gradientBackground
       )}
-      onClick={() => {
-        if (!disabled && !isMatched) handleClick(id);
-      }}
+      disabled={disabled}
+      onClick={handleClick}
     >
-      {}
       {isFlipped ? (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img src={image} alt={`pokemoncard${id}`} className="w-full h-full" />
